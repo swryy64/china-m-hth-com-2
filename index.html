@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华体会 · 信息聚合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        body {
+            background: #f5f9fc;
+            color: #1e2a33;
+            line-height: 1.6;
+            padding: 0 1rem 3rem;
+        }
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* hero */
+        .hero {
+            background: linear-gradient(145deg, #e0f0f3 0%, #cde4e8 100%);
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            margin: 2rem 0 2.5rem;
+            box-shadow: 0 8px 24px rgba(0,80,90,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(0,150,160,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #11555f;
+            margin-bottom: 0.6rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 620px;
+            color: #2b4f58;
+        }
+        .hero .tagline {
+            display: inline-block;
+            margin-top: 0.3rem;
+            background: rgba(0,140,150,0.12);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #0b6e7a;
+        }
+
+        /* grid 卡片 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 1.2rem;
+            padding: 1.8rem 1.4rem;
+            box-shadow: 0 2px 8px rgba(0,70,80,0.04);
+            border: 1px solid #d9e9ed;
+            transition: box-shadow 0.2s, transform 0.1s;
+        }
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0,110,120,0.07);
+        }
+        .card .icon {
+            width: 40px;
+            height: 40px;
+            background: #d5edf1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: #0f7885;
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1b3d44;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #3a555e;
+        }
+
+        /* 说明 / 场景区块 */
+        .insight {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 2rem 1.8rem;
+            margin: 2.5rem 0;
+            border: 1px solid #d4e4e9;
+            box-shadow: 0 4px 12px rgba(0,70,80,0.03);
+        }
+        .insight h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #104a55;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .insight h2 span {
+            background: #bfe3e9;
+            width: 6px;
+            height: 24px;
+            display: inline-block;
+            border-radius: 4px;
+        }
+        .insight p {
+            margin-bottom: 1.2rem;
+            color: #2b4a54;
+        }
+        .insight .highlight {
+            background: #e7f3f6;
+            padding: 0.8rem 1.2rem;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            color: #11555f;
+        }
+
+        /* FAQ 摘要 */
+        .faq-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0 1.5rem;
+        }
+        .faq-item {
+            background: #f0f7f9;
+            padding: 1.2rem 1.2rem;
+            border-radius: 1rem;
+            border-left: 3px solid #5cb8c9;
+        }
+        .faq-item .q {
+            font-weight: 600;
+            color: #104a55;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+        .faq-item .a {
+            font-size: 0.88rem;
+            color: #3c5963;
+        }
+
+        /* 底部链接 */
+        .footer-note {
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid #cde0e5;
+            text-align: center;
+            font-size: 0.92rem;
+            color: #3b5f6a;
+        }
+        .footer-note a {
+            color: #0f7885;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #88c3cf;
+        }
+        .footer-note a:hover {
+            border-bottom: 2px solid #0f7885;
+        }
+        .footer-meta {
+            margin-top: 0.8rem;
+            font-size: 0.82rem;
+            color: #6b8a94;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero { padding: 2rem 1.2rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .grid { gap: 1rem; }
+            .card { padding: 1.4rem 1rem; }
+            .insight { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- hero -->
+        <section class="hero">
+            <h1>华体会 · 日常查询对照</h1>
+            <p>面向信息检索与延伸阅读，聚合常用数据维度、场景索引与 FAQ 摘要，便于快速定位与对比。</p>
+            <div class="tagline">结构化梳理 · 卡片式索引</div>
+        </section>
+
+        <!-- 优势区 / 特点卡片 -->
+        <div class="grid">
+            <div class="card">
+                <div class="icon">📋</div>
+                <h3>多维度索引</h3>
+                <p>覆盖基础信息、场景分类与关联条目，支持按需展开对照，减少重复跳转。</p>
+            </div>
+            <div class="card">
+                <div class="icon">🔗</div>
+                <h3>可溯引用</h3>
+                <p>每项说明保留来源上下文，便于延伸阅读时交叉验证与深入查阅。</p>
+            </div>
+            <div class="card">
+                <div class="icon">🧩</div>
+                <h3>模块化摘要</h3>
+                <p>采用独立卡片与 FAQ 单元，适配移动端快速浏览，信息密度适中。</p>
+            </div>
+            <div class="card">
+                <div class="icon">📌</div>
+                <h3>场景标签</h3>
+                <p>按日常查询、对照分析、资料整理三个方向标注，提升检索效率。</p>
+            </div>
+        </div>
+
+        <!-- 说明区 / 延伸阅读 -->
+        <section class="insight">
+            <h2><span></span> 查询与对照说明</h2>
+            <p>在日常信息处理中，经常需要快速定位关键指标、功能边界或关联参考。本页面围绕 <a href="https://china-m-hth.com" style="color:#0f7885;text-decoration:underline;font-weight:500;">华体会</a> 的常见查询方向，整理出以下对照维度，适用于横向比较与背景阅读。</p>
+            <p>每个卡片单元聚焦一类主题，后续 FAQ 摘要收录了出现频率较高的疑问条目。建议结合具体需求组合使用，也可作为进一步检索的起点。</p>
+            <div class="highlight">
+                ⚡ 提示：如需获取完整条目列表或更新日志，建议直接通过页面底部链接进入主站查阅。
+            </div>
+        </section>
+
+        <!-- FAQ 摘要 -->
+        <h3 style="font-weight:600;color:#104a55;margin:1rem 0 0.5rem;font-size:1.15rem;">📘 常见查询摘要</h3>
+        <div class="faq-summary">
+            <div class="faq-item">
+                <div class="q">▪ 如何确认信息时效？</div>
+                <div class="a">每条内容均标注最近更新周期，核心数据可回溯至原始参考页面。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">▪ 有无分类过滤方式？</div>
+                <div class="a">当前按「索引」「场景」「FAQ」三类分区，后续将增加标签筛选功能。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">▪ 是否支持延伸阅读？</div>
+                <div class="a">每个卡片与 FAQ 均关联内部超链接或脚注，可直接跳转至详细说明页。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">▪ 对照依据是什么？</div>
+                <div class="a">主要基于公开资料与结构化字段，差异点已在页面内通过注释或区间标示。</div>
+            </div>
+        </div>
+
+        <!-- 底部链接 -->
+        <footer class="footer-note">
+            <p>主站 · <a href="https://china-m-hth.com">华体会</a> — 信息整合与延伸阅读入口</p>
+            <div class="footer-meta">
+                数据梳理 v1.2 · 页面仅供索引参考
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
